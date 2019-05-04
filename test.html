@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+</head>
+<body onload="getLink()">
+
+<h1>This is a Heading</h1>
+<p>This is a paragraph.</p>
+
+<script type="text/javascript">
+  var today = new Date();
+  var url = "https://docs.google.com/forms/d/e/1FAIpQLSdC544RSEZ02wBTDvYehC2KLEgdQ9pcWf49-ueKmWpMPrNA7g/viewform?usp=pp_url";
+  var dateId = "2044404719";
+  var durationId = "1061148028";
+  
+  function formatDate(date){
+      return date.getFullYear() + "-" 
+          + ("0" + (date.getMonth() + 1)).slice(-2) + "-"
+          + ("0" + date.getDate()).slice(-2) + "+"
+          + ("0" + date.getHours()).slice(-2) + ":"
+          + ("0" + (date.getMinutes() + 5)).slice(-2);
+  }
+  
+  function addEntry(link, entry_id, entry_value){
+      var new_link = link + "&entry." + entry_id + "=" + encodeURI(entry_value);
+      return new_link
+  }
+  
+  function getLink(){
+    var link = addEntry(url, dateId, formatDate(today));
+    link = addEntry(link, durationId, "01:00:00");
+    console.log(link);
+    document.getElementById("form").setAttribute("href", link);
+    link;
+  }
+</script>
+
+<div>
+Blablablkjdejfojezdizeofjoeizjfziefjizefj Blablablkjdejfojezdizeofjoeizjfziefjizefj Blablablkjdejfojezdizeofjoeizjfziefjizefj Blablablkjdejfojezdizeofjoeizjfziefjizefj Blablablkjdejfojezdizeofjoeizjfziefjizefj Blablablkjdejfojezdizeofjoeizjfziefjizefj<a id="form" href="getLink()">Booking Form</a>
+</div>
+
+</body>
+</html>

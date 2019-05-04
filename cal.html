@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Calendar</title>
+<style>
+  .responsiveCal {
+ 
+position: relative; padding-bottom: 75%; height: 0; overflow: hidden;
+ 
+}
+ 
+.responsiveCal iframe {
+ 
+position: relative; top:5%; left: 5%; width: 60%;
+ 
+}
+
+.desktop {
+  display: block;
+  height: 40%;
+}
+
+.mobile {
+  display: none;
+}
+
+@media screen and (max-width: 800px) {
+
+.desktop {
+  display: none;
+}
+.mobile {
+  display: block;
+  height: 80%;
+}
+
+}
+</style>
+</head>
+<body onload="getLink()">
+
+<script type="text/javascript">
+  var today = new Date();
+  var url = "https://docs.google.com/forms/d/e/1FAIpQLSdC544RSEZ02wBTDvYehC2KLEgdQ9pcWf49-ueKmWpMPrNA7g/viewform?usp=pp_url";
+  var dateId = "2044404719";
+  var durationId = "1061148028";
+  
+  function formatDate(date){
+      return date.getFullYear() + "-" 
+          + ("0" + (date.getMonth() + 1)).slice(-2) + "-"
+          + ("0" + date.getDate()).slice(-2) + "+"
+          + ("0" + date.getHours()).slice(-2) + ":"
+          + ("0" + (date.getMinutes() + 5)).slice(-2);
+  }
+  
+  function addEntry(link, entry_id, entry_value){
+      var new_link = link + "&entry." + entry_id + "=" + encodeURI(entry_value);
+      return new_link
+  }
+  
+  function getLink(){
+    var link = addEntry(url, dateId, formatDate(today));
+    link = addEntry(link, durationId, "01:00:00");
+    console.log(link);
+    document.getElementById("form").setAttribute("href", link);
+    link;
+  }
+</script>
+
+<div>
+To book a room, please fill out the <a id="form" href="getLink()">Booking Form</a>
+</div>
+
+<div class="responsiveCal desktop">
+ 
+<iframe src="https://calendar.google.com/calendar/b/1/embed?height=600&amp;wkst=2&amp;bgcolor=%23ffffff&amp;ctz=Asia%2FSingapore&amp;src=ZXNzZWMuZWR1XzNwazdjZG11bTc3MmNxY2tsa2s2dGJybDgwQGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20&amp;src=ZXNzZWMuZWR1XzRyYnE0aHVxZTloZ2E4Z3BiMWxuOWFnazlrQGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20&amp;src=ZXNzZWMuZWR1X2VvdHVjbjZiY2V2NWYxanI4NHZxYWQ2dmpzQGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20&amp;color=%239E69AF&amp;color=%23E67C73&amp;color=%23009688&amp;showTitle=0&amp;showPrint=0&amp;showTabs=1&amp;mode=WEEK" style="border-width:0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+</div>
+
+<div class="responsiveCal mobile">
+ 
+<iframe src="https://calendar.google.com/calendar/b/1/embed?height=600&amp;wkst=2&amp;bgcolor=%23ffffff&amp;ctz=Asia%2FSingapore&amp;src=ZXNzZWMuZWR1XzNwazdjZG11bTc3MmNxY2tsa2s2dGJybDgwQGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20&amp;src=ZXNzZWMuZWR1XzRyYnE0aHVxZTloZ2E4Z3BiMWxuOWFnazlrQGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20&amp;src=ZXNzZWMuZWR1X2VvdHVjbjZiY2V2NWYxanI4NHZxYWQ2dmpzQGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20&amp;color=%239E69AF&amp;color=%23E67C73&amp;color=%23009688&amp;showTitle=0&amp;showPrint=0&amp;showTabs=0&amp;mode=AGENDA" style="border-width:0" width="800" height="500" frameborder="0" scrolling="no"></iframe>
+</div>
+
+</body>
+</html>
