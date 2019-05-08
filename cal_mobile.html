@@ -14,30 +14,9 @@ position: relative; padding-bottom: 75%; height: 0; overflow: hidden;
 position: relative; top:5%; left: 5%; width: 60%;
  
 }
-
-.desktop {
-  display: block;
-  height: 40%;
-}
-
-.mobile {
-  display: none;
-}
-
-@media screen and (max-width: 600px) {
-
-.desktop {
-  display: none;
-}
-.mobile {
-  display: block;
-  height: 80%;
-}
-
-}
 </style>
 </head>
-<body onload="init()">
+<body onload="getLink()">
 
 <script type="text/javascript">
   var today = new Date();
@@ -65,29 +44,13 @@ position: relative; top:5%; left: 5%; width: 60%;
     document.getElementById("form").setAttribute("href", link);
     link;
   }
-
-  function redirectMobile(){
-    if( screen.width <= 480 ) {
-    location.href = '/cal_mobile.html';
-    }
-  }
-
-  function init(){
-    getLink();
-    redirectMobile();
-  }
 </script>
 
 <div>
 To book a room, please fill out the <a id="form" href="getLink()">Booking Form</a>
 </div>
 
-<div class="responsiveCal desktop">
- 
-<iframe src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=2&amp;bgcolor=%23ffffff&amp;ctz=Asia%2FSingapore&amp;src=ZXNzZWMuZWR1X2VvdHVjbjZiY2V2NWYxanI4NHZxYWQ2dmpzQGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20&amp;src=ZXNzZWMuZWR1XzNwazdjZG11bTc3MmNxY2tsa2s2dGJybDgwQGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20&amp;src=ZXNzZWMuZWR1XzRyYnE0aHVxZTloZ2E4Z3BiMWxuOWFnazlrQGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20&amp;color=%23009688&amp;color=%239E69AF&amp;color=%23E67C73&amp;showPrint=0&amp;showTitle=0&amp;mode=WEEK" style="border-width:0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
-</div>
-
-<div class="responsiveCal mobile">
+<div class="responsiveCal">
  
 <iframe src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=2&amp;bgcolor=%23ffffff&amp;ctz=Asia%2FSingapore&amp;src=ZXNzZWMuZWR1X2VvdHVjbjZiY2V2NWYxanI4NHZxYWQ2dmpzQGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20&amp;src=ZXNzZWMuZWR1XzNwazdjZG11bTc3MmNxY2tsa2s2dGJybDgwQGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20&amp;src=ZXNzZWMuZWR1XzRyYnE0aHVxZTloZ2E4Z3BiMWxuOWFnazlrQGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20&amp;color=%23009688&amp;color=%239E69AF&amp;color=%23E67C73&amp;showPrint=0&amp;showTitle=0&amp;mode=AGENDA" style="border-width:0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
 </div>
