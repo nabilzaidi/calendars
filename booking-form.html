@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<script type="text/javascript">
+  var today = new Date();
+  var url = "https://docs.google.com/forms/d/e/1FAIpQLScEid7Et8Flhz4IEPQGQrU5wMGZRSipuKuqQfAele0nKkxwfA/viewform?embedded=true&usp=pp_url";
+  var dateId = "322402909";
+  var durationId = "456942231";
+  
+  function formatDate(date){
+  	return date.getFullYear() + "-" 
+	      + ("0" + (date.getMonth() + 1)).slice(-2) + "-"
+	      + ("0" + date.getDate()).slice(-2) + "+"
+	      + ("0" + date.getHours()).slice(-2) + ":"
+	      + ("0" + (date.getMinutes() + 5) % 60).slice(-2);
+  }
+  
+  function addEntry(link, entry_id, entry_value){
+      var new_link = link + "&entry." + entry_id + "=" + encodeURI(entry_value);
+      return new_link
+  }
+  
+  function getLink(){
+    var link = addEntry(url, dateId, formatDate(today));
+    link = addEntry(link, durationId, "01:00");
+    console.log(link);
+    document.getElementById("form").setAttribute("src", link);
+    link;
+  }
+</script>
+
+
+<body onload="getLink()">
+<h1>Google form</h1>
+
+
+<div class='issuu-embed-container'>
+
+<iframe id="form" src="" height="700" width="100%" frameBorder="0">Loading...</iframe>
+
+</div>
+
+</body>
+</html>
