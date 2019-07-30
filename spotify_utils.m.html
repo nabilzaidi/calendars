@@ -1,0 +1,1863 @@
+<!doctype html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+
+    <title>tools.spotify_utils API documentation</title>
+    <meta name="description" content="Ensemble de fonctions pour faciliter l'usage de Spotify" />
+
+  <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300' rel='stylesheet' type='text/css'>
+  
+  <style type="text/css">
+  
+* {
+  box-sizing: border-box;
+}
+/*! normalize.css v1.1.1 | MIT License | git.io/normalize */
+
+/* ==========================================================================
+   HTML5 display definitions
+   ========================================================================== */
+
+/**
+ * Correct `block` display not defined in IE 6/7/8/9 and Firefox 3.
+ */
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section,
+summary {
+    display: block;
+}
+
+/**
+ * Correct `inline-block` display not defined in IE 6/7/8/9 and Firefox 3.
+ */
+
+audio,
+canvas,
+video {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+}
+
+/**
+ * Prevent modern browsers from displaying `audio` without controls.
+ * Remove excess height in iOS 5 devices.
+ */
+
+audio:not([controls]) {
+    display: none;
+    height: 0;
+}
+
+/**
+ * Address styling not present in IE 7/8/9, Firefox 3, and Safari 4.
+ * Known issue: no IE 6 support.
+ */
+
+[hidden] {
+    display: none;
+}
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+
+/**
+ * 1. Prevent system color scheme's background color being used in Firefox, IE,
+ *    and Opera.
+ * 2. Prevent system color scheme's text color being used in Firefox, IE, and
+ *    Opera.
+ * 3. Correct text resizing oddly in IE 6/7 when body `font-size` is set using
+ *    `em` units.
+ * 4. Prevent iOS text size adjust after orientation change, without disabling
+ *    user zoom.
+ */
+
+html {
+    background: #fff; /* 1 */
+    color: #000; /* 2 */
+    font-size: 100%; /* 3 */
+    -webkit-text-size-adjust: 100%; /* 4 */
+    -ms-text-size-adjust: 100%; /* 4 */
+}
+
+/**
+ * Address `font-family` inconsistency between `textarea` and other form
+ * elements.
+ */
+
+html,
+button,
+input,
+select,
+textarea {
+    font-family: sans-serif;
+}
+
+/**
+ * Address margins handled incorrectly in IE 6/7.
+ */
+
+body {
+    margin: 0;
+}
+
+/* ==========================================================================
+   Links
+   ========================================================================== */
+
+/**
+ * Address `outline` inconsistency between Chrome and other browsers.
+ */
+
+a:focus {
+    outline: thin dotted;
+}
+
+/**
+ * Improve readability when focused and also mouse hovered in all browsers.
+ */
+
+a:active,
+a:hover {
+    outline: 0;
+}
+
+/* ==========================================================================
+   Typography
+   ========================================================================== */
+
+/**
+ * Address font sizes and margins set differently in IE 6/7.
+ * Address font sizes within `section` and `article` in Firefox 4+, Safari 5,
+ * and Chrome.
+ */
+
+h1 {
+    font-size: 2em;
+    margin: 0.67em 0;
+}
+
+h2 {
+    font-size: 1.5em;
+    margin: 0.83em 0;
+}
+
+h3 {
+    font-size: 1.17em;
+    margin: 1em 0;
+}
+
+h4 {
+    font-size: 1em;
+    margin: 1.33em 0;
+}
+
+h5 {
+    font-size: 0.83em;
+    margin: 1.67em 0;
+}
+
+h6 {
+    font-size: 0.67em;
+    margin: 2.33em 0;
+}
+
+/**
+ * Address styling not present in IE 7/8/9, Safari 5, and Chrome.
+ */
+
+abbr[title] {
+    border-bottom: 1px dotted;
+}
+
+/**
+ * Address style set to `bolder` in Firefox 3+, Safari 4/5, and Chrome.
+ */
+
+b,
+strong {
+    font-weight: bold;
+}
+
+blockquote {
+    margin: 1em 40px;
+}
+
+/**
+ * Address styling not present in Safari 5 and Chrome.
+ */
+
+dfn {
+    font-style: italic;
+}
+
+/**
+ * Address differences between Firefox and other browsers.
+ * Known issue: no IE 6/7 normalization.
+ */
+
+hr {
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    height: 0;
+}
+
+/**
+ * Address styling not present in IE 6/7/8/9.
+ */
+
+mark {
+    background: #ff0;
+    color: #000;
+}
+
+/**
+ * Address margins set differently in IE 6/7.
+ */
+
+p,
+pre {
+    margin: 1em 0;
+}
+
+/**
+ * Correct font family set oddly in IE 6, Safari 4/5, and Chrome.
+ */
+
+code,
+kbd,
+pre,
+samp {
+    font-family: monospace, serif;
+    _font-family: 'courier new', monospace;
+    font-size: 1em;
+}
+
+/**
+ * Improve readability of pre-formatted text in all browsers.
+ */
+
+pre {
+    white-space: pre;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+/**
+ * Address CSS quotes not supported in IE 6/7.
+ */
+
+q {
+    quotes: none;
+}
+
+/**
+ * Address `quotes` property not supported in Safari 4.
+ */
+
+q:before,
+q:after {
+    content: '';
+    content: none;
+}
+
+/**
+ * Address inconsistent and variable font size in all browsers.
+ */
+
+small {
+    font-size: 80%;
+}
+
+/**
+ * Prevent `sub` and `sup` affecting `line-height` in all browsers.
+ */
+
+sub,
+sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+}
+
+sup {
+    top: -0.5em;
+}
+
+sub {
+    bottom: -0.25em;
+}
+
+/* ==========================================================================
+   Lists
+   ========================================================================== */
+
+/**
+ * Address margins set differently in IE 6/7.
+ */
+
+dl,
+menu,
+ol,
+ul {
+    margin: 1em 0;
+}
+
+dd {
+    margin: 0 0 0 40px;
+}
+
+/**
+ * Address paddings set differently in IE 6/7.
+ */
+
+menu,
+ol,
+ul {
+    padding: 0 0 0 40px;
+}
+
+/**
+ * Correct list images handled incorrectly in IE 7.
+ */
+
+nav ul,
+nav ol {
+    list-style: none;
+    list-style-image: none;
+}
+
+/* ==========================================================================
+   Embedded content
+   ========================================================================== */
+
+/**
+ * 1. Remove border when inside `a` element in IE 6/7/8/9 and Firefox 3.
+ * 2. Improve image quality when scaled in IE 7.
+ */
+
+img {
+    border: 0; /* 1 */
+    -ms-interpolation-mode: bicubic; /* 2 */
+}
+
+/**
+ * Correct overflow displayed oddly in IE 9.
+ */
+
+svg:not(:root) {
+    overflow: hidden;
+}
+
+/* ==========================================================================
+   Figures
+   ========================================================================== */
+
+/**
+ * Address margin not present in IE 6/7/8/9, Safari 5, and Opera 11.
+ */
+
+figure {
+    margin: 0;
+}
+
+/* ==========================================================================
+   Forms
+   ========================================================================== */
+
+/**
+ * Correct margin displayed oddly in IE 6/7.
+ */
+
+form {
+    margin: 0;
+}
+
+/**
+ * Define consistent border, margin, and padding.
+ */
+
+fieldset {
+    border: 1px solid #c0c0c0;
+    margin: 0 2px;
+    padding: 0.35em 0.625em 0.75em;
+}
+
+/**
+ * 1. Correct color not being inherited in IE 6/7/8/9.
+ * 2. Correct text not wrapping in Firefox 3.
+ * 3. Correct alignment displayed oddly in IE 6/7.
+ */
+
+legend {
+    border: 0; /* 1 */
+    padding: 0;
+    white-space: normal; /* 2 */
+    *margin-left: -7px; /* 3 */
+}
+
+/**
+ * 1. Correct font size not being inherited in all browsers.
+ * 2. Address margins set differently in IE 6/7, Firefox 3+, Safari 5,
+ *    and Chrome.
+ * 3. Improve appearance and consistency in all browsers.
+ */
+
+button,
+input,
+select,
+textarea {
+    font-size: 100%; /* 1 */
+    margin: 0; /* 2 */
+    vertical-align: baseline; /* 3 */
+    *vertical-align: middle; /* 3 */
+}
+
+/**
+ * Address Firefox 3+ setting `line-height` on `input` using `!important` in
+ * the UA stylesheet.
+ */
+
+button,
+input {
+    line-height: normal;
+}
+
+/**
+ * Address inconsistent `text-transform` inheritance for `button` and `select`.
+ * All other form control elements do not inherit `text-transform` values.
+ * Correct `button` style inheritance in Chrome, Safari 5+, and IE 6+.
+ * Correct `select` style inheritance in Firefox 4+ and Opera.
+ */
+
+button,
+select {
+    text-transform: none;
+}
+
+/**
+ * 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio`
+ *    and `video` controls.
+ * 2. Correct inability to style clickable `input` types in iOS.
+ * 3. Improve usability and consistency of cursor style between image-type
+ *    `input` and others.
+ * 4. Remove inner spacing in IE 7 without affecting normal text inputs.
+ *    Known issue: inner spacing remains in IE 6.
+ */
+
+button,
+html input[type="button"], /* 1 */
+input[type="reset"],
+input[type="submit"] {
+    -webkit-appearance: button; /* 2 */
+    cursor: pointer; /* 3 */
+    *overflow: visible;  /* 4 */
+}
+
+/**
+ * Re-set default cursor for disabled elements.
+ */
+
+button[disabled],
+html input[disabled] {
+    cursor: default;
+}
+
+/**
+ * 1. Address box sizing set to content-box in IE 8/9.
+ * 2. Remove excess padding in IE 8/9.
+ * 3. Remove excess padding in IE 7.
+ *    Known issue: excess padding remains in IE 6.
+ */
+
+input[type="checkbox"],
+input[type="radio"] {
+    box-sizing: border-box; /* 1 */
+    padding: 0; /* 2 */
+    *height: 13px; /* 3 */
+    *width: 13px; /* 3 */
+}
+
+/**
+ * 1. Address `appearance` set to `searchfield` in Safari 5 and Chrome.
+ * 2. Address `box-sizing` set to `border-box` in Safari 5 and Chrome
+ *    (include `-moz` to future-proof).
+ */
+
+input[type="search"] {
+    -webkit-appearance: textfield; /* 1 */
+    -moz-box-sizing: content-box;
+    -webkit-box-sizing: content-box; /* 2 */
+    box-sizing: content-box;
+}
+
+/**
+ * Remove inner padding and search cancel button in Safari 5 and Chrome
+ * on OS X.
+ */
+
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+    -webkit-appearance: none;
+}
+
+/**
+ * Remove inner padding and border in Firefox 3+.
+ */
+
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+}
+
+/**
+ * 1. Remove default vertical scrollbar in IE 6/7/8/9.
+ * 2. Improve readability and alignment in all browsers.
+ */
+
+textarea {
+    overflow: auto; /* 1 */
+    vertical-align: top; /* 2 */
+}
+
+/* ==========================================================================
+   Tables
+   ========================================================================== */
+
+/**
+ * Remove most spacing between table cells.
+ */
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+  </style>
+
+  <style type="text/css">
+  
+  html, body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+  }
+  body {
+    background: #fff;
+    font-family: "Source Sans Pro", "Helvetica Neueue", Helvetica, sans;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 1.6em;
+  }
+  #content {
+    width: 70%;
+    max-width: 850px;
+    float: left;
+    padding: 30px 60px;
+    border-left: 1px solid #ddd;
+  }
+  #sidebar {
+    width: 25%;
+    float: left;
+    padding: 30px;
+    overflow: hidden;
+  }
+  #nav {
+    font-size: 130%;
+    margin: 0 0 15px 0;
+  }
+
+  #top {
+    display: block;
+    position: fixed;
+    bottom: 5px;
+    left: 5px;
+    font-size: .85em;
+    text-transform: uppercase;
+  }
+
+  #footer {
+    font-size: .75em;
+    padding: 5px 30px;
+    border-top: 1px solid #ddd;
+    text-align: right;
+  }
+    #footer p {
+      margin: 0 0 0 30px;
+      display: inline-block;
+    }
+
+  h1, h2, h3, h4, h5 {
+    font-weight: 300;
+  }
+  h1 {
+    font-size: 2.5em;
+    line-height: 1.1em;
+    margin: 0 0 .50em 0;
+  }
+
+  h2 {
+    font-size: 1.75em;
+    margin: 1em 0 .50em 0;
+  }
+
+  h3 {
+    margin: 25px 0 10px 0;
+  }
+
+  h4 {
+    margin: 0;
+    font-size: 105%;
+  }
+
+  a {
+    color: #058;
+    text-decoration: none;
+    transition: color .3s ease-in-out;
+  }
+
+  a:hover {
+    color: #e08524;
+    transition: color .3s ease-in-out;
+  }
+
+  pre, code, .mono, .name {
+    font-family: "Ubuntu Mono", "Cousine", "DejaVu Sans Mono", monospace;
+  }
+
+  .title .name {
+    font-weight: bold;
+  }
+  .section-title {
+    margin-top: 2em;
+  }
+  .ident {
+    color: #900;
+  }
+
+  code {
+    background: #f9f9f9;
+  } 
+
+  pre {
+    background: #fefefe;
+    border: 1px solid #ddd;
+    box-shadow: 2px 2px 0 #f3f3f3;
+    margin: 0 30px;
+    padding: 15px 30px;
+  }
+
+  .codehilite {
+    margin: 0 30px 10px 30px;
+  }
+
+    .codehilite pre {
+      margin: 0;
+    }
+    .codehilite .err { background: #ff3300; color: #fff !important; } 
+
+  table#module-list {
+    font-size: 110%;
+  }
+
+    table#module-list tr td:first-child {
+      padding-right: 10px;
+      white-space: nowrap;
+    }
+
+    table#module-list td {
+      vertical-align: top;
+      padding-bottom: 8px;
+    }
+
+      table#module-list td p {
+        margin: 0 0 7px 0;
+      }
+
+  .def {
+    display: table;
+  }
+
+    .def p {
+      display: table-cell;
+      vertical-align: top;
+      text-align: left;
+    }
+
+    .def p:first-child {
+      white-space: nowrap;
+    }
+
+    .def p:last-child {
+      width: 100%;
+    }
+
+
+  #index {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+    ul#index .class_name {
+      /* font-size: 110%; */
+      font-weight: bold;
+    }
+    #index ul {
+      margin: 0;
+    }
+
+  .item {
+    margin: 0 0 15px 0;
+  }
+
+    .item .class {
+      margin: 0 0 25px 30px;
+    }
+
+      .item .class ul.class_list {
+        margin: 0 0 20px 0;
+      }
+
+    .item .name {
+      background: #fafafa;
+      margin: 0;
+      font-weight: bold;
+      padding: 5px 10px;
+      border-radius: 3px;
+      display: inline-block;
+      min-width: 40%;
+    }
+      .item .name:hover {
+        background: #f6f6f6;
+      }
+
+    .item .empty_desc {
+      margin: 0 0 5px 0;
+      padding: 0;
+    }
+
+    .item .inheritance {
+      margin: 3px 0 0 30px;
+    }
+
+    .item .inherited {
+      color: #666;
+    }
+
+    .item .desc {
+      padding: 0 8px;
+      margin: 0;
+    }
+
+      .item .desc p {
+        margin: 0 0 10px 0;
+      }
+
+    .source_cont {
+      margin: 0;
+      padding: 0;
+    }
+
+    .source_link a {
+      background: #ffc300;
+      font-weight: 400;
+      font-size: .75em;
+      text-transform: uppercase;
+      color: #fff;
+      text-shadow: 1px 1px 0 #f4b700;
+      
+      padding: 3px 8px;
+      border-radius: 2px;
+      transition: background .3s ease-in-out;
+    }
+      .source_link a:hover {
+        background: #FF7200;
+        text-shadow: none;
+        transition: background .3s ease-in-out;
+      }
+
+    .source {
+      display: none;
+      max-height: 600px;
+      overflow-y: scroll;
+      margin-bottom: 15px;
+    }
+
+      .source .codehilite {
+        margin: 0;
+      }
+
+  .desc h1, .desc h2, .desc h3 {
+    font-size: 100% !important;
+  }
+  .clear {
+    clear: both;
+  }
+
+  @media all and (max-width: 950px) {
+    #sidebar {
+      width: 35%;
+    }
+    #content {
+      width: 65%;
+    }
+  }
+  @media all and (max-width: 650px) {
+    #top {
+      display: none;
+    }
+    #sidebar {
+      float: none;
+      width: auto;
+    }
+    #content {
+      float: none;
+      width: auto;
+      padding: 30px;
+    }
+
+    #index ul {
+      padding: 0;
+      margin-bottom: 15px;
+    }
+    #index ul li {
+      display: inline-block;
+      margin-right: 30px;
+    }
+    #footer {
+      text-align: left;
+    }
+    #footer p {
+      display: block;
+      margin: inherit;
+    }
+  }
+
+  /*****************************/
+
+  </style>
+
+  <style type="text/css">
+  .codehilite .hll { background-color: #ffffcc }
+.codehilite  { background: #f8f8f8; }
+.codehilite .c { color: #408080; font-style: italic } /* Comment */
+.codehilite .err { border: 1px solid #FF0000 } /* Error */
+.codehilite .k { color: #008000; font-weight: bold } /* Keyword */
+.codehilite .o { color: #666666 } /* Operator */
+.codehilite .ch { color: #408080; font-style: italic } /* Comment.Hashbang */
+.codehilite .cm { color: #408080; font-style: italic } /* Comment.Multiline */
+.codehilite .cp { color: #BC7A00 } /* Comment.Preproc */
+.codehilite .cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
+.codehilite .c1 { color: #408080; font-style: italic } /* Comment.Single */
+.codehilite .cs { color: #408080; font-style: italic } /* Comment.Special */
+.codehilite .gd { color: #A00000 } /* Generic.Deleted */
+.codehilite .ge { font-style: italic } /* Generic.Emph */
+.codehilite .gr { color: #FF0000 } /* Generic.Error */
+.codehilite .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.codehilite .gi { color: #00A000 } /* Generic.Inserted */
+.codehilite .go { color: #888888 } /* Generic.Output */
+.codehilite .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.codehilite .gs { font-weight: bold } /* Generic.Strong */
+.codehilite .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.codehilite .gt { color: #0044DD } /* Generic.Traceback */
+.codehilite .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.codehilite .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.codehilite .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.codehilite .kp { color: #008000 } /* Keyword.Pseudo */
+.codehilite .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.codehilite .kt { color: #B00040 } /* Keyword.Type */
+.codehilite .m { color: #666666 } /* Literal.Number */
+.codehilite .s { color: #BA2121 } /* Literal.String */
+.codehilite .na { color: #7D9029 } /* Name.Attribute */
+.codehilite .nb { color: #008000 } /* Name.Builtin */
+.codehilite .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.codehilite .no { color: #880000 } /* Name.Constant */
+.codehilite .nd { color: #AA22FF } /* Name.Decorator */
+.codehilite .ni { color: #999999; font-weight: bold } /* Name.Entity */
+.codehilite .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+.codehilite .nf { color: #0000FF } /* Name.Function */
+.codehilite .nl { color: #A0A000 } /* Name.Label */
+.codehilite .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.codehilite .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.codehilite .nv { color: #19177C } /* Name.Variable */
+.codehilite .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.codehilite .w { color: #bbbbbb } /* Text.Whitespace */
+.codehilite .mb { color: #666666 } /* Literal.Number.Bin */
+.codehilite .mf { color: #666666 } /* Literal.Number.Float */
+.codehilite .mh { color: #666666 } /* Literal.Number.Hex */
+.codehilite .mi { color: #666666 } /* Literal.Number.Integer */
+.codehilite .mo { color: #666666 } /* Literal.Number.Oct */
+.codehilite .sa { color: #BA2121 } /* Literal.String.Affix */
+.codehilite .sb { color: #BA2121 } /* Literal.String.Backtick */
+.codehilite .sc { color: #BA2121 } /* Literal.String.Char */
+.codehilite .dl { color: #BA2121 } /* Literal.String.Delimiter */
+.codehilite .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.codehilite .s2 { color: #BA2121 } /* Literal.String.Double */
+.codehilite .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+.codehilite .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.codehilite .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+.codehilite .sx { color: #008000 } /* Literal.String.Other */
+.codehilite .sr { color: #BB6688 } /* Literal.String.Regex */
+.codehilite .s1 { color: #BA2121 } /* Literal.String.Single */
+.codehilite .ss { color: #19177C } /* Literal.String.Symbol */
+.codehilite .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.codehilite .fm { color: #0000FF } /* Name.Function.Magic */
+.codehilite .vc { color: #19177C } /* Name.Variable.Class */
+.codehilite .vg { color: #19177C } /* Name.Variable.Global */
+.codehilite .vi { color: #19177C } /* Name.Variable.Instance */
+.codehilite .vm { color: #19177C } /* Name.Variable.Magic */
+.codehilite .il { color: #666666 } /* Literal.Number.Integer.Long */
+  </style>
+
+  <style type="text/css">
+  
+/* ==========================================================================
+   EXAMPLE Media Queries for Responsive Design.
+   These examples override the primary ('mobile first') styles.
+   Modify as content requires.
+   ========================================================================== */
+
+@media only screen and (min-width: 35em) {
+    /* Style adjustments for viewports that meet the condition */
+}
+
+@media print,
+       (-o-min-device-pixel-ratio: 5/4),
+       (-webkit-min-device-pixel-ratio: 1.25),
+       (min-resolution: 120dpi) {
+    /* Style adjustments for high resolution devices */
+}
+
+/* ==========================================================================
+   Print styles.
+   Inlined to avoid required HTTP connection: h5bp.com/r
+   ========================================================================== */
+
+@media print {
+    * {
+        background: transparent !important;
+        color: #000 !important; /* Black prints faster: h5bp.com/s */
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+    a,
+    a:visited {
+        text-decoration: underline;
+    }
+
+    a[href]:after {
+        content: " (" attr(href) ")";
+    }
+
+    abbr[title]:after {
+        content: " (" attr(title) ")";
+    }
+
+    /*
+     * Don't show links for images, or javascript/internal links
+     */
+
+    .ir a:after,
+    a[href^="javascript:"]:after,
+    a[href^="#"]:after {
+        content: "";
+    }
+
+    pre,
+    blockquote {
+        border: 1px solid #999;
+        page-break-inside: avoid;
+    }
+
+    thead {
+        display: table-header-group; /* h5bp.com/t */
+    }
+
+    tr,
+    img {
+        page-break-inside: avoid;
+    }
+
+    img {
+        max-width: 100% !important;
+    }
+
+    @page {
+        margin: 0.5cm;
+    }
+
+    p,
+    h2,
+    h3 {
+        orphans: 3;
+        widows: 3;
+    }
+
+    h2,
+    h3 {
+        page-break-after: avoid;
+    }
+}
+
+  </style>
+
+  <script type="text/javascript">
+  function toggle(id, $link) {
+    $node = document.getElementById(id);
+    if (!$node)
+    return;
+    if (!$node.style.display || $node.style.display == 'none') {
+    $node.style.display = 'block';
+    $link.innerHTML = 'Hide source &nequiv;';
+    } else {
+    $node.style.display = 'none';
+    $link.innerHTML = 'Show source &equiv;';
+    }
+  }
+  </script>
+</head>
+<body>
+<a href="#" id="top">Top</a>
+
+<div id="container">
+    
+  
+  <div id="sidebar">
+    <h1>Index</h1>
+    <ul id="index">
+
+    <li class="set"><h3><a href="#header-functions">Functions</a></h3>
+      
+  <ul>
+    <li class="mono"><a href="#tools.spotify_utils.compare_res_base">compare_res_base</a></li>
+    <li class="mono"><a href="#tools.spotify_utils.flatten_scores">flatten_scores</a></li>
+    <li class="mono"><a href="#tools.spotify_utils.item_simplifie">item_simplifie</a></li>
+    <li class="mono"><a href="#tools.spotify_utils.res_simplifie">res_simplifie</a></li>
+  </ul>
+
+    </li>
+
+    <li class="set"><h3><a href="#header-classes">Classes</a></h3>
+      <ul>
+        <li class="mono">
+        <span class="class_name"><a href="#tools.spotify_utils.Spotify">Spotify</a></span>
+        
+          
+  <ul>
+    <li class="mono"><a href="#tools.spotify_utils.Spotify.__init__">__init__</a></li>
+    <li class="mono"><a href="#tools.spotify_utils.Spotify.get_song">get_song</a></li>
+    <li class="mono"><a href="#tools.spotify_utils.Spotify.init_sp">init_sp</a></li>
+    <li class="mono"><a href="#tools.spotify_utils.Spotify.refresh">refresh</a></li>
+  </ul>
+
+        </li>
+      </ul>
+    </li>
+
+    </ul>
+  </div>
+
+    <article id="content">
+      
+  
+
+  
+
+
+  <header id="section-intro">
+  <h1 class="title"><span class="name">tools.spotify_utils</span> module</h1>
+  <p>Ensemble de fonctions pour faciliter l'usage de Spotify</p>
+  
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-tools.spotify_utils', this);">Show source &equiv;</a></p>
+  <div id="source-tools.spotify_utils" class="source">
+    <div class="codehilite"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Ensemble de fonctions pour faciliter l&#39;usage de Spotify</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+
+<span class="kn">import</span> <span class="nn">spotipy</span>
+<span class="kn">import</span> <span class="nn">spotipy.util</span> <span class="kn">as</span> <span class="nn">util</span>
+<span class="c1"># from utils.song_utils import clean_song, remove_album, remove_details</span>
+<span class="kn">from</span> <span class="nn">tools.search_utils</span> <span class="kn">import</span> <span class="n">get_song</span>
+<span class="c1"># from time import sleep</span>
+<span class="kn">from</span> <span class="nn">tools.distance_utils</span> <span class="kn">import</span> <span class="n">all_scores</span>
+
+
+<span class="k">class</span> <span class="nc">Spotify</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Classe représentant le client Spotify.\n</span>
+<span class="sd">    Facilite la connexion, le rafraichissement des token</span>
+<span class="sd">    et la recherche de musique sur Spotify.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scope</span><span class="o">=</span><span class="s1">&#39;user-library-read&#39;</span><span class="p">,</span>
+                 <span class="n">username</span><span class="o">=</span><span class="s2">&quot;nabilzaidi&quot;</span><span class="p">,</span>
+                 <span class="n">client_id</span><span class="o">=</span><span class="s2">&quot;a469c28537484cdbb4bae55a7fae6fe4&quot;</span><span class="p">,</span>
+                 <span class="n">client_secret</span><span class="o">=</span><span class="s2">&quot;35d08f7f75294e6d921b14a33d2299f0&quot;</span><span class="p">,</span>
+                 <span class="n">redirect_uri</span><span class="o">=</span><span class="s2">&quot;http://localhost/&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Fonction d&#39;initialisation. Les informations sont disponibles</span>
+<span class="sd">        sur l&#39;interface application de Spotify.\n</span>
+<span class="sd">        @var scope [string], ce que le client est authorisé à faire,</span>
+<span class="sd">        paramètre fournie et modifiable dans l&#39;application Spotify.</span>
+<span class="sd">        @var username [string], nom d&#39;utilisateur Spotify\n</span>
+<span class="sd">        @var client_id [string], id du client Spotify\n</span>
+<span class="sd">        @var client_secret [string], clé secrète du client Spotify\n</span>
+<span class="sd">        @var redirect_uri [string], url de redirection choisie sur Spotify.\n</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">sp_oauth</span> <span class="o">=</span> <span class="n">spotipy</span><span class="o">.</span><span class="n">oauth2</span><span class="o">.</span><span class="n">SpotifyOAuth</span><span class="p">(</span>
+            <span class="n">client_id</span><span class="o">=</span><span class="n">client_id</span><span class="p">,</span>
+            <span class="n">client_secret</span><span class="o">=</span><span class="n">client_secret</span><span class="p">,</span>
+            <span class="n">redirect_uri</span><span class="o">=</span><span class="n">redirect_uri</span><span class="p">,</span>
+            <span class="n">scope</span><span class="o">=</span><span class="n">scope</span><span class="p">)</span>
+        <span class="c1"># Création de l&#39;authentificateur du client Spotify</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sp</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">token_info</span> <span class="o">=</span> <span class="bp">None</span>
+
+    <span class="k">def</span> <span class="nf">init_sp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Fonction pour initialiser le client Spotify.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">token_info</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sp_oauth</span><span class="o">.</span><span class="n">get_cached_token</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">token_info</span><span class="p">:</span>
+            <span class="c1"># Si aucun token n&#39;est dans le cache</span>
+            <span class="c1"># on récupère l&#39;url qui va nous fournir le code</span>
+            <span class="c1"># d&#39;authentification</span>
+            <span class="n">auth_url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sp_oauth</span><span class="o">.</span><span class="n">get_authorize_url</span><span class="p">()</span>
+            <span class="k">print</span><span class="p">(</span><span class="n">auth_url</span><span class="p">)</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span>
+                <span class="s1">&#39;Accéder au lien ci dessus, </span><span class="se">\</span>
+<span class="s1">et coller le lien de redirection ci dessous: &#39;</span><span class="p">)</span>
+            <span class="c1"># Le lien affiché permet de s&#39;authentifier.</span>
+            <span class="c1"># Spotify redirige ensuite vers le site spécifier dans</span>
+            <span class="c1"># redirect_uri. Le lien de redirection contient en réalité</span>
+            <span class="c1"># le code permettant de s&#39;authentifier.</span>
+            <span class="n">code</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sp_oauth</span><span class="o">.</span><span class="n">parse_response_code</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+            <span class="n">token_info</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sp_oauth</span><span class="o">.</span><span class="n">get_access_token</span><span class="p">(</span><span class="n">code</span><span class="p">)</span>
+
+        <span class="n">token</span> <span class="o">=</span> <span class="n">token_info</span><span class="p">[</span><span class="s1">&#39;access_token&#39;</span><span class="p">]</span>
+        <span class="c1"># Initialisation du client Spotify avec le token récupéré</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sp</span> <span class="o">=</span> <span class="n">spotipy</span><span class="o">.</span><span class="n">Spotify</span><span class="p">(</span><span class="n">auth</span><span class="o">=</span><span class="n">token</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">refresh</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Fonction pour rafraichir le token Spotify</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">token_info</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sp_oauth</span><span class="o">.</span><span class="n">refresh_access_token</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">token_info</span><span class="p">[</span><span class="s1">&#39;refresh_token&#39;</span><span class="p">]</span>
+        <span class="p">)</span>
+        <span class="n">token</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">token_info</span><span class="p">[</span><span class="s1">&#39;access_token&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sp</span> <span class="o">=</span> <span class="n">spotipy</span><span class="o">.</span><span class="n">Spotify</span><span class="p">(</span><span class="n">auth</span><span class="o">=</span><span class="n">token</span><span class="p">)</span>
+
+<span class="c1">#     def search(self, query, n_try=2):</span>
+<span class="c1">#         &quot;&quot;&quot;</span>
+<span class="c1">#         Fonction pour faciliter la recherche d&#39;une musique sur Spotify.\n</span>
+<span class="c1">#         @var query [string], la musique à chercher\n</span>
+<span class="c1">#         @var n_try [int], le nombre d&#39;essai à effectuer\n</span>
+<span class="c1"># \n</span>
+<span class="c1">#         @returns [dict], un dictionnaire avec:\n</span>
+<span class="c1">#             &quot;query&quot;: la requête,\n</span>
+<span class="c1">#             &quot;res&quot;: les résultats Spotify\n</span>
+<span class="c1">#             &quot;n_items&quot;: le nombre de titres trouvés par Spotify</span>
+<span class="c1">#         &quot;&quot;&quot;</span>
+<span class="c1">#         res = dict()</span>
+
+<span class="c1">#         aux_search = lambda s: self.sp.search(q=s, limit=20, market=&quot;FR&quot;)</span>
+<span class="c1">#         res = generic_search(</span>
+<span class="c1">#             aux_search, query=query, n_try=n_try, refresh=self.refresh</span>
+<span class="c1">#         )</span>
+<span class="c1">#         n_items = res.get(&quot;tracks&quot;, dict()).get(&quot;total&quot;, 0)</span>
+
+<span class="c1">#         return {&quot;query&quot;: query,</span>
+<span class="c1">#                 &quot;res&quot;: res,</span>
+<span class="c1">#                 &quot;n_items&quot;: n_items}</span>
+
+    <span class="k">def</span> <span class="nf">get_song</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">song</span><span class="p">,</span> <span class="n">n_try</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">20</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Fonction pour trouver une musique sur Spotify.\n</span>
+<span class="sd">        Cette fonction va &quot;nettoyer&quot; le titre pour simplifier la recherche.</span>
+<span class="sd">        @var song [string], la musique à chercher\n</span>
+<span class="sd">        @var n_try [int], le nombre d&#39;essai à effectuer\n</span>
+<span class="sd">        @var limit [int], le nombre maximum de résultats à récupèrer\n</span>
+<span class="sd">\n</span>
+<span class="sd">        @returns [dict], un dictionnaire avec:\n</span>
+<span class="sd">            &quot;query&quot;: la requête,\n</span>
+<span class="sd">            &quot;res&quot;: les résultats Spotify\n</span>
+<span class="sd">            &quot;n_items&quot;: le nombre de titres trouvés par Spotify</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">aux_search</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">sp</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">q</span><span class="o">=</span><span class="n">s</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="n">limit</span><span class="p">,</span> <span class="n">market</span><span class="o">=</span><span class="s2">&quot;FR&quot;</span><span class="p">)</span>
+        <span class="n">len_fct</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">res</span><span class="p">:</span> <span class="n">res</span><span class="p">[</span><span class="s2">&quot;res&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;tracks&quot;</span><span class="p">,</span> <span class="nb">dict</span><span class="p">())</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;total&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">get_song</span><span class="p">(</span><span class="n">search_fct</span><span class="o">=</span><span class="n">aux_search</span><span class="p">,</span>
+                        <span class="n">song</span><span class="o">=</span><span class="n">song</span><span class="p">,</span> <span class="n">n_try</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">refresh</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span>
+                        <span class="n">length_res_fct</span><span class="o">=</span><span class="n">len_fct</span><span class="p">)</span>
+
+<span class="c1">#     def get_song(self, song, n_try=2):</span>
+<span class="c1">#         &quot;&quot;&quot;</span>
+<span class="c1">#         Fonction pour trouver une musique sur Spotify.\n</span>
+<span class="c1">#         Cette fonction va &quot;nettoyer&quot; le titre pour simplifier la recherche.</span>
+<span class="c1">#         @var song [string], la musique à chercher\n</span>
+<span class="c1">#         @var n_try [int], le nombre d&#39;essai à effectuer\n</span>
+<span class="c1"># \n</span>
+<span class="c1">#         @returns [dict], un dictionnaire avec:\n</span>
+<span class="c1">#             &quot;query&quot;: la requête,\n</span>
+<span class="c1">#             &quot;res&quot;: les résultats Spotify\n</span>
+<span class="c1">#             &quot;n_items&quot;: le nombre de titres trouvés par Spotify</span>
+<span class="c1">#         &quot;&quot;&quot;</span>
+<span class="c1">#         query = song.strip()</span>
+<span class="c1">#         res = self.search(query, n_try=n_try)</span>
+<span class="c1">#         n_items = res[&quot;res&quot;].get(&quot;tracks&quot;, dict()).get(&quot;total&quot;, 0)</span>
+<span class="c1">#         list_clean = [clean_song, remove_album, remove_details, remove_details]</span>
+<span class="c1">#         if n_items == 0:</span>
+<span class="c1">#             for f in list_clean:</span>
+<span class="c1">#                 query2 = f(query)</span>
+<span class="c1">#                 if query2 != query:</span>
+<span class="c1">#                     res = self.search(query2, n_try=n_try)</span>
+<span class="c1">#                     n_items = res[&quot;res&quot;].get(&quot;tracks&quot;, dict()).get(&quot;total&quot;, 0)</span>
+<span class="c1">#                     if n_items &gt; 0:</span>
+<span class="c1">#                         break</span>
+<span class="c1">#                     query = query2</span>
+
+<span class="c1">#         if isinstance(res, dict):</span>
+<span class="c1">#             res[&quot;song&quot;] = song</span>
+<span class="c1">#         else:</span>
+<span class="c1">#             res = dict()</span>
+<span class="c1">#         return res</span>
+
+
+<span class="k">def</span> <span class="nf">item_simplifie</span><span class="p">(</span><span class="n">item</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Renvoie une version simplifié d&#39;une musique trouvée sur Spotify.\n</span>
+<span class="sd">    @var item [dict], musique trouvée sur Spotify</span>
+<span class="sd">    (avec l&#39;album, les différents artistes...)</span>
+<span class="sd">    \n</span>
+<span class="sd">    @returns [dict], un dictionnaire avec</span>
+<span class="sd">        &quot;id&quot;: id Spotify de la musique,\n</span>
+<span class="sd">        &quot;song_name&quot;: nom de la musique,\n</span>
+<span class="sd">        &quot;album_name&quot;: nom de l&#39;album,\n</span>
+<span class="sd">        &#39;album_release_date&#39;: date de sortie de l&#39;album,\n</span>
+<span class="sd">        &quot;artists&quot;: nom des artistes</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="n">item</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;song_name&quot;</span><span class="p">:</span> <span class="n">item</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;album_name&quot;</span><span class="p">:</span> <span class="n">item</span><span class="p">[</span><span class="s2">&quot;album&quot;</span><span class="p">][</span><span class="s2">&quot;name&quot;</span><span class="p">],</span>
+        <span class="s1">&#39;album_release_date&#39;</span><span class="p">:</span> <span class="n">item</span><span class="p">[</span><span class="s2">&quot;album&quot;</span><span class="p">][</span><span class="s1">&#39;release_date&#39;</span><span class="p">],</span>
+        <span class="s2">&quot;artists&quot;</span><span class="p">:</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">a</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">item</span><span class="p">[</span><span class="s2">&quot;artists&quot;</span><span class="p">]])</span>
+    <span class="p">}</span>
+
+
+<span class="k">def</span> <span class="nf">res_simplifie</span><span class="p">(</span><span class="n">res</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Renvoie une version simplifié d&#39;un résultat Spotify.\n</span>
+<span class="sd">    @var res [dict], résultat trouvé sur Spotify</span>
+<span class="sd">    (ensemble de musiques pouvant correspondre à la requête)</span>
+<span class="sd">    \n</span>
+<span class="sd">    @returns [dict], un dictionnaire avec</span>
+<span class="sd">        &quot;items&quot;: liste des résultats simplifiés</span>
+<span class="sd">        (retournés par item_simplifie),\n</span>
+<span class="sd">        &quot;n_items&quot;: nombre de résultats trouvés,\n</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">items</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;tracks&quot;</span><span class="p">,</span> <span class="nb">dict</span><span class="p">())</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;items&quot;</span><span class="p">,</span> <span class="p">[])</span>
+    <span class="n">new_res</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+    <span class="n">l_items_simplifies</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">items</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">info</span> <span class="o">=</span> <span class="n">item_simplifie</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+            <span class="n">l_items_simplifies</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">info</span><span class="p">)</span>
+
+    <span class="n">new_res</span><span class="p">[</span><span class="s2">&quot;items&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">l_items_simplifies</span>
+    <span class="n">new_res</span><span class="p">[</span><span class="s2">&quot;n_items&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">l_items_simplifies</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">new_res</span>
+
+
+<span class="k">def</span> <span class="nf">flatten_scores</span><span class="p">(</span><span class="n">scores</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">scores</span>
+    <span class="c1"># all_scores = []</span>
+    <span class="c1"># for k, v in scores.items():</span>
+    <span class="c1">#     all_scores += [(name_sc + &quot;_&quot; + k, sc)</span>
+    <span class="c1">#                    for name_sc, sc in v.items()]</span>
+    <span class="c1"># return dict(all_scores)</span>
+
+
+<span class="k">def</span> <span class="nf">compare_res_base</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">artist</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compare une musique trouvée sur Spotify</span>
+<span class="sd">    avec le titre et l&#39;artiste de la base de donnée.</span>
+<span class="sd">    @var res [dict], musique trouvée sur Spotify</span>
+<span class="sd">    @var title [string], titre dans la base de donnée</span>
+<span class="sd">    @var artist [string], atiste dans la base de donnée</span>
+<span class="sd">    \n</span>
+<span class="sd">    @returns [dict], dictionnaire avec les scores:</span>
+<span class="sd">        &quot;song&quot;: scores appliqués sur le titre de la musique trouvée</span>
+<span class="sd">        et le titre de la base de données.</span>
+<span class="sd">        &quot;album&quot;: scores appliqués sur l&#39;album de la musique trouvée</span>
+<span class="sd">        et le titre de la base de données.</span>
+<span class="sd">        &quot;artist&quot;: scores appliqués sur l&#39;artiste de la musique trouvée</span>
+<span class="sd">        et l&#39;artiste dans la base de données.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">scores_song</span> <span class="o">=</span> <span class="n">all_scores</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="s2">&quot;song_name&quot;</span><span class="p">],</span> <span class="n">title</span><span class="p">)</span>
+    <span class="n">scores_album</span> <span class="o">=</span> <span class="n">all_scores</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="s2">&quot;album_name&quot;</span><span class="p">],</span> <span class="n">title</span><span class="p">)</span>
+    <span class="n">scores_artist</span> <span class="o">=</span> <span class="n">all_scores</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="s2">&quot;artists&quot;</span><span class="p">],</span> <span class="n">artist</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;song&quot;</span><span class="p">:</span> <span class="n">scores_song</span><span class="p">,</span>
+            <span class="s2">&quot;album&quot;</span><span class="p">:</span> <span class="n">scores_album</span><span class="p">,</span>
+            <span class="s2">&quot;artist&quot;</span><span class="p">:</span> <span class="n">scores_artist</span>
+            <span class="p">}</span>
+</pre></div>
+
+  </div>
+
+  </header>
+
+  <section id="section-items">
+
+    <h2 class="section-title" id="header-functions">Functions</h2>
+      
+  <div class="item">
+    <div class="name def" id="tools.spotify_utils.compare_res_base">
+    <p>def <span class="ident">compare_res_base</span>(</p><p>res, title, artist)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Compare une musique trouvée sur Spotify
+avec le titre et l'artiste de la base de donnée.
+@var res [dict], musique trouvée sur Spotify
+@var title [string], titre dans la base de donnée
+@var artist [string], atiste dans la base de donnée</p>
+<p>@returns [dict], dictionnaire avec les scores:
+    "song": scores appliqués sur le titre de la musique trouvée
+    et le titre de la base de données.
+    "album": scores appliqués sur l'album de la musique trouvée
+    et le titre de la base de données.
+    "artist": scores appliqués sur l'artiste de la musique trouvée
+    et l'artiste dans la base de données.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-tools.spotify_utils.compare_res_base', this);">Show source &equiv;</a></p>
+  <div id="source-tools.spotify_utils.compare_res_base" class="source">
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">compare_res_base</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">artist</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compare une musique trouvée sur Spotify</span>
+<span class="sd">    avec le titre et l&#39;artiste de la base de donnée.</span>
+<span class="sd">    @var res [dict], musique trouvée sur Spotify</span>
+<span class="sd">    @var title [string], titre dans la base de donnée</span>
+<span class="sd">    @var artist [string], atiste dans la base de donnée</span>
+<span class="sd">    \n</span>
+<span class="sd">    @returns [dict], dictionnaire avec les scores:</span>
+<span class="sd">        &quot;song&quot;: scores appliqués sur le titre de la musique trouvée</span>
+<span class="sd">        et le titre de la base de données.</span>
+<span class="sd">        &quot;album&quot;: scores appliqués sur l&#39;album de la musique trouvée</span>
+<span class="sd">        et le titre de la base de données.</span>
+<span class="sd">        &quot;artist&quot;: scores appliqués sur l&#39;artiste de la musique trouvée</span>
+<span class="sd">        et l&#39;artiste dans la base de données.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">scores_song</span> <span class="o">=</span> <span class="n">all_scores</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="s2">&quot;song_name&quot;</span><span class="p">],</span> <span class="n">title</span><span class="p">)</span>
+    <span class="n">scores_album</span> <span class="o">=</span> <span class="n">all_scores</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="s2">&quot;album_name&quot;</span><span class="p">],</span> <span class="n">title</span><span class="p">)</span>
+    <span class="n">scores_artist</span> <span class="o">=</span> <span class="n">all_scores</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="s2">&quot;artists&quot;</span><span class="p">],</span> <span class="n">artist</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;song&quot;</span><span class="p">:</span> <span class="n">scores_song</span><span class="p">,</span>
+            <span class="s2">&quot;album&quot;</span><span class="p">:</span> <span class="n">scores_album</span><span class="p">,</span>
+            <span class="s2">&quot;artist&quot;</span><span class="p">:</span> <span class="n">scores_artist</span>
+            <span class="p">}</span>
+</pre></div>
+
+  </div>
+</div>
+
+  </div>
+  
+      
+  <div class="item">
+    <div class="name def" id="tools.spotify_utils.flatten_scores">
+    <p>def <span class="ident">flatten_scores</span>(</p><p>scores)</p>
+    </div>
+    
+
+    
+  
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-tools.spotify_utils.flatten_scores', this);">Show source &equiv;</a></p>
+  <div id="source-tools.spotify_utils.flatten_scores" class="source">
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">flatten_scores</span><span class="p">(</span><span class="n">scores</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">scores</span>
+</pre></div>
+
+  </div>
+</div>
+
+  </div>
+  
+      
+  <div class="item">
+    <div class="name def" id="tools.spotify_utils.item_simplifie">
+    <p>def <span class="ident">item_simplifie</span>(</p><p>item)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Renvoie une version simplifié d'une musique trouvée sur Spotify.</p>
+<p>@var item [dict], musique trouvée sur Spotify
+(avec l'album, les différents artistes...)</p>
+<p>@returns [dict], un dictionnaire avec
+    "id": id Spotify de la musique,</p>
+<div class="codehilite"><pre><span></span><span class="ss">&quot;song_name&quot;</span><span class="p">:</span> <span class="n">nom</span> <span class="n">de</span> <span class="n">la</span> <span class="n">musique</span><span class="p">,</span>
+
+<span class="ss">&quot;album_name&quot;</span><span class="p">:</span> <span class="n">nom</span> <span class="n">de</span> <span class="n">l</span><span class="s1">&#39;album,</span>
+
+<span class="s1">&#39;</span><span class="n">album_release_date</span><span class="s1">&#39;: date de sortie de l&#39;</span><span class="n">album</span><span class="p">,</span>
+
+<span class="ss">&quot;artists&quot;</span><span class="p">:</span> <span class="n">nom</span> <span class="n">des</span> <span class="n">artistes</span>
+</pre></div></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-tools.spotify_utils.item_simplifie', this);">Show source &equiv;</a></p>
+  <div id="source-tools.spotify_utils.item_simplifie" class="source">
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">item_simplifie</span><span class="p">(</span><span class="n">item</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Renvoie une version simplifié d&#39;une musique trouvée sur Spotify.\n</span>
+<span class="sd">    @var item [dict], musique trouvée sur Spotify</span>
+<span class="sd">    (avec l&#39;album, les différents artistes...)</span>
+<span class="sd">    \n</span>
+<span class="sd">    @returns [dict], un dictionnaire avec</span>
+<span class="sd">        &quot;id&quot;: id Spotify de la musique,\n</span>
+<span class="sd">        &quot;song_name&quot;: nom de la musique,\n</span>
+<span class="sd">        &quot;album_name&quot;: nom de l&#39;album,\n</span>
+<span class="sd">        &#39;album_release_date&#39;: date de sortie de l&#39;album,\n</span>
+<span class="sd">        &quot;artists&quot;: nom des artistes</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="n">item</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;song_name&quot;</span><span class="p">:</span> <span class="n">item</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;album_name&quot;</span><span class="p">:</span> <span class="n">item</span><span class="p">[</span><span class="s2">&quot;album&quot;</span><span class="p">][</span><span class="s2">&quot;name&quot;</span><span class="p">],</span>
+        <span class="s1">&#39;album_release_date&#39;</span><span class="p">:</span> <span class="n">item</span><span class="p">[</span><span class="s2">&quot;album&quot;</span><span class="p">][</span><span class="s1">&#39;release_date&#39;</span><span class="p">],</span>
+        <span class="s2">&quot;artists&quot;</span><span class="p">:</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">a</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">item</span><span class="p">[</span><span class="s2">&quot;artists&quot;</span><span class="p">]])</span>
+    <span class="p">}</span>
+</pre></div>
+
+  </div>
+</div>
+
+  </div>
+  
+      
+  <div class="item">
+    <div class="name def" id="tools.spotify_utils.res_simplifie">
+    <p>def <span class="ident">res_simplifie</span>(</p><p>res)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Renvoie une version simplifié d'un résultat Spotify.</p>
+<p>@var res [dict], résultat trouvé sur Spotify
+(ensemble de musiques pouvant correspondre à la requête)</p>
+<p>@returns [dict], un dictionnaire avec
+    "items": liste des résultats simplifiés
+    (retournés par item_simplifie),</p>
+<div class="codehilite"><pre><span></span><span class="ss">&quot;n_items&quot;</span><span class="p">:</span> <span class="n">nombre</span> <span class="n">de</span> <span class="n">résultats</span> <span class="n">trouvés</span><span class="p">,</span>
+</pre></div></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-tools.spotify_utils.res_simplifie', this);">Show source &equiv;</a></p>
+  <div id="source-tools.spotify_utils.res_simplifie" class="source">
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">res_simplifie</span><span class="p">(</span><span class="n">res</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Renvoie une version simplifié d&#39;un résultat Spotify.\n</span>
+<span class="sd">    @var res [dict], résultat trouvé sur Spotify</span>
+<span class="sd">    (ensemble de musiques pouvant correspondre à la requête)</span>
+<span class="sd">    \n</span>
+<span class="sd">    @returns [dict], un dictionnaire avec</span>
+<span class="sd">        &quot;items&quot;: liste des résultats simplifiés</span>
+<span class="sd">        (retournés par item_simplifie),\n</span>
+<span class="sd">        &quot;n_items&quot;: nombre de résultats trouvés,\n</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">items</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;tracks&quot;</span><span class="p">,</span> <span class="nb">dict</span><span class="p">())</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;items&quot;</span><span class="p">,</span> <span class="p">[])</span>
+    <span class="n">new_res</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+    <span class="n">l_items_simplifies</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">items</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">info</span> <span class="o">=</span> <span class="n">item_simplifie</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+            <span class="n">l_items_simplifies</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">info</span><span class="p">)</span>
+
+    <span class="n">new_res</span><span class="p">[</span><span class="s2">&quot;items&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">l_items_simplifies</span>
+    <span class="n">new_res</span><span class="p">[</span><span class="s2">&quot;n_items&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">l_items_simplifies</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">new_res</span>
+</pre></div>
+
+  </div>
+</div>
+
+  </div>
+  
+
+    <h2 class="section-title" id="header-classes">Classes</h2>
+      
+      <div class="item">
+      <p id="tools.spotify_utils.Spotify" class="name">class <span class="ident">Spotify</span></p>
+      
+  
+    <div class="desc"><p>Classe représentant le client Spotify.</p>
+<p>Facilite la connexion, le rafraichissement des token
+et la recherche de musique sur Spotify.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-tools.spotify_utils.Spotify', this);">Show source &equiv;</a></p>
+  <div id="source-tools.spotify_utils.Spotify" class="source">
+    <div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">Spotify</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Classe représentant le client Spotify.\n</span>
+<span class="sd">    Facilite la connexion, le rafraichissement des token</span>
+<span class="sd">    et la recherche de musique sur Spotify.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scope</span><span class="o">=</span><span class="s1">&#39;user-library-read&#39;</span><span class="p">,</span>
+                 <span class="n">username</span><span class="o">=</span><span class="s2">&quot;nabilzaidi&quot;</span><span class="p">,</span>
+                 <span class="n">client_id</span><span class="o">=</span><span class="s2">&quot;a469c28537484cdbb4bae55a7fae6fe4&quot;</span><span class="p">,</span>
+                 <span class="n">client_secret</span><span class="o">=</span><span class="s2">&quot;35d08f7f75294e6d921b14a33d2299f0&quot;</span><span class="p">,</span>
+                 <span class="n">redirect_uri</span><span class="o">=</span><span class="s2">&quot;http://localhost/&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Fonction d&#39;initialisation. Les informations sont disponibles</span>
+<span class="sd">        sur l&#39;interface application de Spotify.\n</span>
+<span class="sd">        @var scope [string], ce que le client est authorisé à faire,</span>
+<span class="sd">        paramètre fournie et modifiable dans l&#39;application Spotify.</span>
+<span class="sd">        @var username [string], nom d&#39;utilisateur Spotify\n</span>
+<span class="sd">        @var client_id [string], id du client Spotify\n</span>
+<span class="sd">        @var client_secret [string], clé secrète du client Spotify\n</span>
+<span class="sd">        @var redirect_uri [string], url de redirection choisie sur Spotify.\n</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">sp_oauth</span> <span class="o">=</span> <span class="n">spotipy</span><span class="o">.</span><span class="n">oauth2</span><span class="o">.</span><span class="n">SpotifyOAuth</span><span class="p">(</span>
+            <span class="n">client_id</span><span class="o">=</span><span class="n">client_id</span><span class="p">,</span>
+            <span class="n">client_secret</span><span class="o">=</span><span class="n">client_secret</span><span class="p">,</span>
+            <span class="n">redirect_uri</span><span class="o">=</span><span class="n">redirect_uri</span><span class="p">,</span>
+            <span class="n">scope</span><span class="o">=</span><span class="n">scope</span><span class="p">)</span>
+        <span class="c1"># Création de l&#39;authentificateur du client Spotify</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sp</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">token_info</span> <span class="o">=</span> <span class="bp">None</span>
+
+    <span class="k">def</span> <span class="nf">init_sp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Fonction pour initialiser le client Spotify.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">token_info</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sp_oauth</span><span class="o">.</span><span class="n">get_cached_token</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">token_info</span><span class="p">:</span>
+            <span class="c1"># Si aucun token n&#39;est dans le cache</span>
+            <span class="c1"># on récupère l&#39;url qui va nous fournir le code</span>
+            <span class="c1"># d&#39;authentification</span>
+            <span class="n">auth_url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sp_oauth</span><span class="o">.</span><span class="n">get_authorize_url</span><span class="p">()</span>
+            <span class="k">print</span><span class="p">(</span><span class="n">auth_url</span><span class="p">)</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span>
+                <span class="s1">&#39;Accéder au lien ci dessus, </span><span class="se">\</span>
+<span class="s1">et coller le lien de redirection ci dessous: &#39;</span><span class="p">)</span>
+            <span class="c1"># Le lien affiché permet de s&#39;authentifier.</span>
+            <span class="c1"># Spotify redirige ensuite vers le site spécifier dans</span>
+            <span class="c1"># redirect_uri. Le lien de redirection contient en réalité</span>
+            <span class="c1"># le code permettant de s&#39;authentifier.</span>
+            <span class="n">code</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sp_oauth</span><span class="o">.</span><span class="n">parse_response_code</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+            <span class="n">token_info</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sp_oauth</span><span class="o">.</span><span class="n">get_access_token</span><span class="p">(</span><span class="n">code</span><span class="p">)</span>
+
+        <span class="n">token</span> <span class="o">=</span> <span class="n">token_info</span><span class="p">[</span><span class="s1">&#39;access_token&#39;</span><span class="p">]</span>
+        <span class="c1"># Initialisation du client Spotify avec le token récupéré</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sp</span> <span class="o">=</span> <span class="n">spotipy</span><span class="o">.</span><span class="n">Spotify</span><span class="p">(</span><span class="n">auth</span><span class="o">=</span><span class="n">token</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">refresh</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Fonction pour rafraichir le token Spotify</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">token_info</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sp_oauth</span><span class="o">.</span><span class="n">refresh_access_token</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">token_info</span><span class="p">[</span><span class="s1">&#39;refresh_token&#39;</span><span class="p">]</span>
+        <span class="p">)</span>
+        <span class="n">token</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">token_info</span><span class="p">[</span><span class="s1">&#39;access_token&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sp</span> <span class="o">=</span> <span class="n">spotipy</span><span class="o">.</span><span class="n">Spotify</span><span class="p">(</span><span class="n">auth</span><span class="o">=</span><span class="n">token</span><span class="p">)</span>
+
+<span class="c1">#     def search(self, query, n_try=2):</span>
+<span class="c1">#         &quot;&quot;&quot;</span>
+<span class="c1">#         Fonction pour faciliter la recherche d&#39;une musique sur Spotify.\n</span>
+<span class="c1">#         @var query [string], la musique à chercher\n</span>
+<span class="c1">#         @var n_try [int], le nombre d&#39;essai à effectuer\n</span>
+<span class="c1"># \n</span>
+<span class="c1">#         @returns [dict], un dictionnaire avec:\n</span>
+<span class="c1">#             &quot;query&quot;: la requête,\n</span>
+<span class="c1">#             &quot;res&quot;: les résultats Spotify\n</span>
+<span class="c1">#             &quot;n_items&quot;: le nombre de titres trouvés par Spotify</span>
+<span class="c1">#         &quot;&quot;&quot;</span>
+<span class="c1">#         res = dict()</span>
+
+<span class="c1">#         aux_search = lambda s: self.sp.search(q=s, limit=20, market=&quot;FR&quot;)</span>
+<span class="c1">#         res = generic_search(</span>
+<span class="c1">#             aux_search, query=query, n_try=n_try, refresh=self.refresh</span>
+<span class="c1">#         )</span>
+<span class="c1">#         n_items = res.get(&quot;tracks&quot;, dict()).get(&quot;total&quot;, 0)</span>
+
+<span class="c1">#         return {&quot;query&quot;: query,</span>
+<span class="c1">#                 &quot;res&quot;: res,</span>
+<span class="c1">#                 &quot;n_items&quot;: n_items}</span>
+
+    <span class="k">def</span> <span class="nf">get_song</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">song</span><span class="p">,</span> <span class="n">n_try</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">20</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Fonction pour trouver une musique sur Spotify.\n</span>
+<span class="sd">        Cette fonction va &quot;nettoyer&quot; le titre pour simplifier la recherche.</span>
+<span class="sd">        @var song [string], la musique à chercher\n</span>
+<span class="sd">        @var n_try [int], le nombre d&#39;essai à effectuer\n</span>
+<span class="sd">        @var limit [int], le nombre maximum de résultats à récupèrer\n</span>
+<span class="sd">\n</span>
+<span class="sd">        @returns [dict], un dictionnaire avec:\n</span>
+<span class="sd">            &quot;query&quot;: la requête,\n</span>
+<span class="sd">            &quot;res&quot;: les résultats Spotify\n</span>
+<span class="sd">            &quot;n_items&quot;: le nombre de titres trouvés par Spotify</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">aux_search</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">sp</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">q</span><span class="o">=</span><span class="n">s</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="n">limit</span><span class="p">,</span> <span class="n">market</span><span class="o">=</span><span class="s2">&quot;FR&quot;</span><span class="p">)</span>
+        <span class="n">len_fct</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">res</span><span class="p">:</span> <span class="n">res</span><span class="p">[</span><span class="s2">&quot;res&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;tracks&quot;</span><span class="p">,</span> <span class="nb">dict</span><span class="p">())</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;total&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">get_song</span><span class="p">(</span><span class="n">search_fct</span><span class="o">=</span><span class="n">aux_search</span><span class="p">,</span>
+                        <span class="n">song</span><span class="o">=</span><span class="n">song</span><span class="p">,</span> <span class="n">n_try</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">refresh</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span>
+                        <span class="n">length_res_fct</span><span class="o">=</span><span class="n">len_fct</span><span class="p">)</span>
+</pre></div>
+
+  </div>
+</div>
+
+
+      <div class="class">
+          <h3>Ancestors (in MRO)</h3>
+          <ul class="class_list">
+          <li><a href="#tools.spotify_utils.Spotify">Spotify</a></li>
+          <li>builtins.object</li>
+          </ul>
+          <h3>Static methods</h3>
+            
+  <div class="item">
+    <div class="name def" id="tools.spotify_utils.Spotify.__init__">
+    <p>def <span class="ident">__init__</span>(</p><p>self, scope=&#39;user-library-read&#39;, username=&#39;nabilzaidi&#39;, client_id=&#39;a469c28537484cdbb4bae55a7fae6fe4&#39;, client_secret=&#39;35d08f7f75294e6d921b14a33d2299f0&#39;, redirect_uri=&#39;http://localhost/&#39;)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Fonction d'initialisation. Les informations sont disponibles
+sur l'interface application de Spotify.</p>
+<p>@var scope [string], ce que le client est authorisé à faire,
+paramètre fournie et modifiable dans l'application Spotify.
+@var username [string], nom d'utilisateur Spotify</p>
+<p>@var client_id [string], id du client Spotify</p>
+<p>@var client_secret [string], clé secrète du client Spotify</p>
+<p>@var redirect_uri [string], url de redirection choisie sur Spotify.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-tools.spotify_utils.Spotify.__init__', this);">Show source &equiv;</a></p>
+  <div id="source-tools.spotify_utils.Spotify.__init__" class="source">
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scope</span><span class="o">=</span><span class="s1">&#39;user-library-read&#39;</span><span class="p">,</span>
+             <span class="n">username</span><span class="o">=</span><span class="s2">&quot;nabilzaidi&quot;</span><span class="p">,</span>
+             <span class="n">client_id</span><span class="o">=</span><span class="s2">&quot;a469c28537484cdbb4bae55a7fae6fe4&quot;</span><span class="p">,</span>
+             <span class="n">client_secret</span><span class="o">=</span><span class="s2">&quot;35d08f7f75294e6d921b14a33d2299f0&quot;</span><span class="p">,</span>
+             <span class="n">redirect_uri</span><span class="o">=</span><span class="s2">&quot;http://localhost/&quot;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Fonction d&#39;initialisation. Les informations sont disponibles</span>
+<span class="sd">    sur l&#39;interface application de Spotify.\n</span>
+<span class="sd">    @var scope [string], ce que le client est authorisé à faire,</span>
+<span class="sd">    paramètre fournie et modifiable dans l&#39;application Spotify.</span>
+<span class="sd">    @var username [string], nom d&#39;utilisateur Spotify\n</span>
+<span class="sd">    @var client_id [string], id du client Spotify\n</span>
+<span class="sd">    @var client_secret [string], clé secrète du client Spotify\n</span>
+<span class="sd">    @var redirect_uri [string], url de redirection choisie sur Spotify.\n</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">sp_oauth</span> <span class="o">=</span> <span class="n">spotipy</span><span class="o">.</span><span class="n">oauth2</span><span class="o">.</span><span class="n">SpotifyOAuth</span><span class="p">(</span>
+        <span class="n">client_id</span><span class="o">=</span><span class="n">client_id</span><span class="p">,</span>
+        <span class="n">client_secret</span><span class="o">=</span><span class="n">client_secret</span><span class="p">,</span>
+        <span class="n">redirect_uri</span><span class="o">=</span><span class="n">redirect_uri</span><span class="p">,</span>
+        <span class="n">scope</span><span class="o">=</span><span class="n">scope</span><span class="p">)</span>
+    <span class="c1"># Création de l&#39;authentificateur du client Spotify</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">sp</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">token_info</span> <span class="o">=</span> <span class="bp">None</span>
+</pre></div>
+
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="tools.spotify_utils.Spotify.get_song">
+    <p>def <span class="ident">get_song</span>(</p><p>self, song, n_try=2, limit=20)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Fonction pour trouver une musique sur Spotify.</p>
+<p>Cette fonction va "nettoyer" le titre pour simplifier la recherche.
+@var song [string], la musique à chercher</p>
+<p>@var n_try [int], le nombre d'essai à effectuer</p>
+<p>@var limit [int], le nombre maximum de résultats à récupèrer</p>
+<p>@returns [dict], un dictionnaire avec:</p>
+<div class="codehilite"><pre><span></span><span class="ss">&quot;query&quot;</span><span class="p">:</span> <span class="n">la</span> <span class="n">requête</span><span class="p">,</span>
+
+<span class="ss">&quot;res&quot;</span><span class="p">:</span> <span class="n">les</span> <span class="n">résultats</span> <span class="n">Spotify</span>
+
+<span class="ss">&quot;n_items&quot;</span><span class="p">:</span> <span class="n">le</span> <span class="n">nombre</span> <span class="n">de</span> <span class="n">titres</span> <span class="n">trouvés</span> <span class="n">par</span> <span class="n">Spotify</span>
+</pre></div></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-tools.spotify_utils.Spotify.get_song', this);">Show source &equiv;</a></p>
+  <div id="source-tools.spotify_utils.Spotify.get_song" class="source">
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">get_song</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">song</span><span class="p">,</span> <span class="n">n_try</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">20</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Fonction pour trouver une musique sur Spotify.\n</span>
+<span class="sd">    Cette fonction va &quot;nettoyer&quot; le titre pour simplifier la recherche.</span>
+<span class="sd">    @var song [string], la musique à chercher\n</span>
+<span class="sd">    @var n_try [int], le nombre d&#39;essai à effectuer\n</span>
+<span class="sd">    @var limit [int], le nombre maximum de résultats à récupèrer\n</span>
+<span class="sd">    @returns [dict], un dictionnaire avec:\n</span>
+<span class="sd">        &quot;query&quot;: la requête,\n</span>
+<span class="sd">        &quot;res&quot;: les résultats Spotify\n</span>
+<span class="sd">        &quot;n_items&quot;: le nombre de titres trouvés par Spotify</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">aux_search</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">sp</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">q</span><span class="o">=</span><span class="n">s</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="n">limit</span><span class="p">,</span> <span class="n">market</span><span class="o">=</span><span class="s2">&quot;FR&quot;</span><span class="p">)</span>
+    <span class="n">len_fct</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">res</span><span class="p">:</span> <span class="n">res</span><span class="p">[</span><span class="s2">&quot;res&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;tracks&quot;</span><span class="p">,</span> <span class="nb">dict</span><span class="p">())</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;total&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">get_song</span><span class="p">(</span><span class="n">search_fct</span><span class="o">=</span><span class="n">aux_search</span><span class="p">,</span>
+                    <span class="n">song</span><span class="o">=</span><span class="n">song</span><span class="p">,</span> <span class="n">n_try</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">refresh</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span>
+                    <span class="n">length_res_fct</span><span class="o">=</span><span class="n">len_fct</span><span class="p">)</span>
+</pre></div>
+
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="tools.spotify_utils.Spotify.init_sp">
+    <p>def <span class="ident">init_sp</span>(</p><p>self)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Fonction pour initialiser le client Spotify.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-tools.spotify_utils.Spotify.init_sp', this);">Show source &equiv;</a></p>
+  <div id="source-tools.spotify_utils.Spotify.init_sp" class="source">
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">init_sp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Fonction pour initialiser le client Spotify.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">token_info</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sp_oauth</span><span class="o">.</span><span class="n">get_cached_token</span><span class="p">()</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">token_info</span><span class="p">:</span>
+        <span class="c1"># Si aucun token n&#39;est dans le cache</span>
+        <span class="c1"># on récupère l&#39;url qui va nous fournir le code</span>
+        <span class="c1"># d&#39;authentification</span>
+        <span class="n">auth_url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sp_oauth</span><span class="o">.</span><span class="n">get_authorize_url</span><span class="p">()</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">auth_url</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span>
+            <span class="s1">&#39;Accéder au lien ci dessus, </span><span class="se">\</span>
+<span class="s1">oller le lien de redirection ci dessous: &#39;</span><span class="p">)</span>
+        <span class="c1"># Le lien affiché permet de s&#39;authentifier.</span>
+        <span class="c1"># Spotify redirige ensuite vers le site spécifier dans</span>
+        <span class="c1"># redirect_uri. Le lien de redirection contient en réalité</span>
+        <span class="c1"># le code permettant de s&#39;authentifier.</span>
+        <span class="n">code</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sp_oauth</span><span class="o">.</span><span class="n">parse_response_code</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+        <span class="n">token_info</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sp_oauth</span><span class="o">.</span><span class="n">get_access_token</span><span class="p">(</span><span class="n">code</span><span class="p">)</span>
+    <span class="n">token</span> <span class="o">=</span> <span class="n">token_info</span><span class="p">[</span><span class="s1">&#39;access_token&#39;</span><span class="p">]</span>
+    <span class="c1"># Initialisation du client Spotify avec le token récupéré</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">sp</span> <span class="o">=</span> <span class="n">spotipy</span><span class="o">.</span><span class="n">Spotify</span><span class="p">(</span><span class="n">auth</span><span class="o">=</span><span class="n">token</span><span class="p">)</span>
+</pre></div>
+
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="tools.spotify_utils.Spotify.refresh">
+    <p>def <span class="ident">refresh</span>(</p><p>self)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Fonction pour rafraichir le token Spotify</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-tools.spotify_utils.Spotify.refresh', this);">Show source &equiv;</a></p>
+  <div id="source-tools.spotify_utils.Spotify.refresh" class="source">
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">refresh</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Fonction pour rafraichir le token Spotify</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">token_info</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sp_oauth</span><span class="o">.</span><span class="n">refresh_access_token</span><span class="p">(</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">token_info</span><span class="p">[</span><span class="s1">&#39;refresh_token&#39;</span><span class="p">]</span>
+    <span class="p">)</span>
+    <span class="n">token</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">token_info</span><span class="p">[</span><span class="s1">&#39;access_token&#39;</span><span class="p">]</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">sp</span> <span class="o">=</span> <span class="n">spotipy</span><span class="o">.</span><span class="n">Spotify</span><span class="p">(</span><span class="n">auth</span><span class="o">=</span><span class="n">token</span><span class="p">)</span>
+</pre></div>
+
+  </div>
+</div>
+
+  </div>
+  
+          <h3>Instance variables</h3>
+            <div class="item">
+            <p id="tools.spotify_utils.Spotify.sp" class="name">var <span class="ident">sp</span></p>
+            
+
+            
+  
+  <div class="source_cont">
+</div>
+
+            </div>
+            <div class="item">
+            <p id="tools.spotify_utils.Spotify.sp_oauth" class="name">var <span class="ident">sp_oauth</span></p>
+            
+
+            
+  
+  <div class="source_cont">
+</div>
+
+            </div>
+            <div class="item">
+            <p id="tools.spotify_utils.Spotify.token_info" class="name">var <span class="ident">token_info</span></p>
+            
+
+            
+  
+  <div class="source_cont">
+</div>
+
+            </div>
+      </div>
+      </div>
+
+  </section>
+
+    </article>
+  <div class="clear"> </div>
+  <footer id="footer">
+    <p>
+      Documentation generated by
+      <a href="https://github.com/BurntSushi/pdoc">pdoc 0.3.2</a>
+    </p>
+
+    <p>pdoc is in the public domain with the
+      <a href="http://unlicense.org">UNLICENSE</a></p>
+
+    <p>Design by <a href="http://nadh.in">Kailash Nadh</a></p>
+  </footer>
+</div>
+</body>
+</html>
